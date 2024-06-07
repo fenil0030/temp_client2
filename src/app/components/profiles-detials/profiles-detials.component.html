@@ -1,0 +1,72 @@
+<h4 class="mt-3 mb-3"> Profiles Details</h4>
+<hr>
+<!-- <div class="submit-form">
+  <div class="form-group">
+    <label for="firstName"> First Name</label>
+    <input type="text" class="form-control" id="firstName" required [(ngModel)]="profile.firstName" name="firstName" [readOnly]="pageMode == 'view' ? true: false"/>
+  </div>
+  <div class="form-group">
+    <label for="lastName"> Last Name</label>
+    <input type="text" class="form-control" id="lastName" required [(ngModel)]="profile.lastName" name="lastName" [readOnly]="pageMode == 'view' ? true: false"/>
+  </div>
+  <div class="form-group">
+    <label for="technology"> Technology</label>
+    <input type="text" class="form-control" id="technology" required [(ngModel)]="profile.technology" name="technology" [readOnly]="pageMode == 'view' ? true: false"/>
+  </div>
+  <div class="form-group">
+    <label for="noofYearsExperience"> No of Years Experience</label>
+    <input type="number" class="form-control" id="noofYearsExperience" required [(ngModel)]="profile.noofYearsExperience" name="noofYearsExperience" [readOnly]="pageMode == 'view' ? true: false"/>
+  </div>
+  <button (click)="addProfiles()" [disabled]="pageMode == 'view'" class="btn btn-success">Submit</button>
+</div> -->
+
+
+<form class="form theme-form" [formGroup]="_bankCardForm">
+
+  <div class="row">
+    <div class="col-md-6 form-group row">
+      <label class="col-sm-4 col-form-label">Holder Name</label>
+      <div class="col-sm-8">
+        <input class="form-control" type="text" placeholder="Enter card holder name" [formControlName]="'firstName'"
+          [class.is-invalid]="_bankCardForm.controls['firstName'].invalid && (_bankCardForm.controls['firstName'].dirty || _bankCardForm.controls['firstName'].touched)" />
+        <div class="invalid-feedback"
+          *ngIf=" _bankCardForm.controls['firstName'].hasError('required') && (_bankCardForm.controls['firstName'].dirty || _bankCardForm.controls['firstName'].touched)">
+          Holder Name is required</div>
+        <!-- <div class="invalid-feedback"
+          *ngIf="_bankCardForm.controls['cardNo'].hasError('pattern') && (_bankCardForm.controls['cardNo'].dirty || _bankCardForm.controls['cardNo'].touched)">
+          Enter the valid number on your card without spaces or dashes.</div> -->
+      </div>
+    </div>
+
+    <div class="col-md-6 form-group row">
+      <label class="col-sm-4 col-form-label">Upload Document</label>
+      <div class="col-sm-8 divPadleft">
+        <div class="input-group">
+          <input hidden class="form-control" type="file" placeholder="Enter name" id="tenantFileId"
+            #filepathPhotograph (change)="fileUpload($event)" multiple />
+          <input readonly type="text" class="form-control" [formControlName]="'fileName'">
+          <div class="input-group-append"><button class="input-group-text" (click)="filepathPhotograph.click()"
+              type="button"><i class="fa fa-upload"></i></button>
+            <!-- <button *ngIf="_documentRecordsForm.value.isFileUploaded" class="input-group-text"
+              (click)="DownloadDocument(_documentRecordsForm.value, null)" type="button"><i
+                class="fa fa-eye"></i></button> -->
+
+                <!-- <div
+                  *ngIf="_documentRecordsForm.controls['billDate'].dirty && _documentRecordsForm.controls['billDate'].invalid">
+                  <small class="form-text text-danger"
+                    *ngIf="_documentRecordsForm.controls['billDate'].errors.ngbDate?.invalid">
+                    Your bill date must be a valid date (Ex: {{dtPlaceholder}}).
+                  </small>
+                </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button (click)="addProfiles()" [disabled]="pageMode == 'view'" class="btn btn-success">Submit</button>
+  <button (click)="addProfiles1()" class="btn btn-success">loader</button>
+  <button (click)="addProfiles2()" class="btn btn-success">snak</button>
+  <button (click)="addProfiles3()" class="btn btn-success">confirm</button>
+
+</form>

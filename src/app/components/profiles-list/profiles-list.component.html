@@ -1,0 +1,100 @@
+<!-- <div class="list row">
+  <div class="col-md-6">
+    <h4> Profiles List</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Technology</th>
+          <th>No of Years Experience</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profile of profiles;">
+          <td>{{profile.firstName}}</td>
+          <td>{{profile.lastName}}</td>
+          <td>{{profile.technology}}</td>
+          <td>{{profile.noofYearsExperience}}</td>
+          <td>
+            <a [routerLink]="['/add/'+profile.id]" class="btn btn-sm btn-primary"> View</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+
+<div class="container" fxLayout="row" fxLayoutAlign="center none">
+  <div fxFlex="95%">
+
+    <mat-card>
+      <mat-card-content>
+        <h2>Jobs</h2>
+        <mat-form-field class="ml-16" style="width: 20%;">
+          <input type="text" placeholder="Search here..." matInput (input)="onTxtSearch(ngSearch.value)" #ngSearch>
+        </mat-form-field>
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortColumn($event)">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="contactNo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact No </th>
+            <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="currentCtc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Current CTC </th>
+            <td mat-cell *matCellDef="let element"> {{element.currentCtc}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="expectedCtc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Expected CTC </th>
+            <td mat-cell *matCellDef="let element"> {{element.expectedCtc}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="noticePeriod">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Notice Period </th>
+            <td mat-cell *matCellDef="let element"> {{element.noticePeriod}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button mat-sm-button color="primary" class="mr-8" matTooltip="Edit"
+                (click)="editJob(element)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button mat-sm-button color="warn" class="mr-8" matTooltip="Delete"
+                (click)="deleteJob(element)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+              No data matching the filter.
+            </td>
+          </tr>
+        </table>
+        <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[10, 25, 50, 100]"
+          [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage" (page)="handlePage($event)">
+        </mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
